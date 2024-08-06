@@ -1,0 +1,28 @@
+-- LocalScript placed in StarterPlayerScripts
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+
+local function highlightPlayers(color)
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr.Character then
+            for _, part in ipairs(plr.Character:GetChildren()) do
+                if part:IsA("BasePart") then
+                    part.BrickColor = color
+                end
+            end
+        end
+    end
+end
+
+-- This is where the keycode is, You may change it
+
+local function onKeyPress(input)
+    if input.KeyCode == Enum.KeyCode.T then
+        highlightPlayers(BrickColor.new("Bright red"))
+    end
+end
+
+-- Connect input event
+UserInputService.InputBegan:Connect(onKeyPress)
